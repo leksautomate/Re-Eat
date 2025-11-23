@@ -108,5 +108,3 @@ src/
 MIT
 
 ## 👨‍💻 Author
-
-Built with ❤️ by [leksautomate](https://github.com/leksautomate)
