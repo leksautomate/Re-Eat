@@ -1,6 +1,7 @@
 import React from 'react';
 import MealForm from '../components/MealForm';
 import SuggestionCard from '../components/SuggestionCard';
+import MealList from '../components/MealList';
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <div className="w-full max-w-2xl space-y-6">
                 <MealForm />
                 <SuggestionCard />
+                <MealList />
             </div>
         </div>
     );
