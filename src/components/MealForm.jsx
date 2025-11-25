@@ -30,7 +30,7 @@ const MealForm = () => {
 
     return (
         <div className="bg-white rounded-2xl shadow-lg p-6 space-y-4">
-            <h2 className="text-xl font-bold text-gray-900">Log a Meal</h2>
+            <h2 className="text-xl font-bold text-gray-900 text-center">Log a Meal</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>

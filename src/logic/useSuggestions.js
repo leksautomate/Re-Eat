@@ -44,14 +44,34 @@ Format your response as JSON:
 }`;
 
             const response = await openai.chat.completions.create({
-                model: "openai/gpt-3.5-turbo",
+                model: "x-ai/grok-4.1-fast:free",
                 messages: [{ role: "user", content: prompt }],
                 temperature: 0.7,
+                extra_body: {
+                    reasoning: {
+                        enabled: true
+                    }
+                }
             });
 
             const content = response.choices[0].message.content;
-            const parsed = JSON.parse(content);
-            setSuggestion(parsed);
+            const reasoning = response.choices[0].message.reasoning_details; // Capture reasoning
+
+            console.log('Raw AI Content:', content);
+            console.log('AI Reasoning:', reasoning);
+
+            // Clean content of markdown code blocks if present
+            const cleanContent = content.replace(/```json\n?|\n?```/g, '').trim();
+
+            let parsed;
+            try {
+                parsed = JSON.parse(cleanContent);
+            } catch (e) {
+                console.error("JSON Parse Error. Content was:", content);
+                throw new Error("Failed to parse AI response");
+            }
+
+            setSuggestion({ ...parsed, reasoning }); // Include reasoning in suggestion object
         } catch (err) {
             console.error('AI Suggestion Error:', err);
             setError(err.message || 'Failed to generate suggestion');

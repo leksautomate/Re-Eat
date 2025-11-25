@@ -48,6 +48,20 @@ const SuggestionCard = () => {
                         <p className="text-gray-700 leading-relaxed">{suggestion.message}</p>
                     </div>
 
+                    {suggestion.reasoning && (
+                        <details className="bg-white rounded-lg p-4 group">
+                            <summary className="cursor-pointer font-medium text-emerald-600 flex items-center gap-2">
+                                <span className="group-open:rotate-90 transition-transform">▶</span>
+                                View AI Reasoning
+                            </summary>
+                            <div className="mt-3 text-sm text-gray-600 bg-gray-50 p-3 rounded border border-gray-100 whitespace-pre-wrap font-mono max-h-60 overflow-y-auto">
+                                {typeof suggestion.reasoning === 'string'
+                                    ? suggestion.reasoning
+                                    : JSON.stringify(suggestion.reasoning, null, 2)}
+                            </div>
+                        </details>
+                    )}
+
                     <div>
                         <h3 className="font-semibold text-gray-900 mb-3">Meal Ideas:</h3>
                         <div className="space-y-2">
